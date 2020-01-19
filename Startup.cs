@@ -20,6 +20,7 @@ namespace TodoApiNet
             services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITodoRepository, TodoRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
