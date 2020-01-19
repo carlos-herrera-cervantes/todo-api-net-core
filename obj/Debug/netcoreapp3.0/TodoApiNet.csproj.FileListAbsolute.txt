@@ -1,0 +1,17 @@
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.Development.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.deps.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.dev.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.pdb
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.Manifest.cache
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.xml
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.MvcApplicationPartsAssemblyInfo.cache
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfoInputs.cache
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfo.cs
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.RazorTargetAssemblyInfo.cache
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.pdb
