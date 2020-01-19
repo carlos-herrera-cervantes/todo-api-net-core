@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TodoApiNet.Contexts;
+using TodoApiNet.Repositories;
 
 namespace TodoApiNet
 {
@@ -18,6 +19,7 @@ namespace TodoApiNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
