@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +25,7 @@ namespace TodoApiNet.Repositories
 
         #region snippet_GetById
 
-        public async Task<User> GetByIdAsync(long id) => await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        public async Task<User> GetByIdAsync(long id) => await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
      
         #endregion
 
@@ -53,7 +52,6 @@ namespace TodoApiNet.Repositories
         public async Task UpdateAsync(User newUser, JsonPatchDocument<User> currentUser)
         {
             currentUser.ApplyTo(newUser);
-            _context.Entry(currentUser).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
