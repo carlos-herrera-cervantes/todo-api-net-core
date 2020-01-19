@@ -45,3 +45,10 @@
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.Bson.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
