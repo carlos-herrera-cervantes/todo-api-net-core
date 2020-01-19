@@ -4,7 +4,6 @@ namespace TodoApiNet.Models
 {
     public class User
     {
-        [Required]
         public long Id { get; set; }
 
         [Required]
