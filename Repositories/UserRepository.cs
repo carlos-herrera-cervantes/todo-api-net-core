@@ -52,6 +52,7 @@ namespace TodoApiNet.Repositories
         public async Task UpdateAsync(User newUser, JsonPatchDocument<User> currentUser)
         {
             currentUser.ApplyTo(newUser);
+            _context.Entry(newUser).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 

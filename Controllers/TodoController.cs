@@ -7,13 +7,13 @@ using TodoApiNet.Repositories;
 
 namespace TodoApiNet.Controllers
 {
-    [Route("api/v1/users")]
+    [Route("api/v1/todos")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class TodoController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly ITodoRepository _todoRepository;
 
-        public UserController(IUserRepository userRepository) => _userRepository = userRepository;
+        public TodoController(ITodoRepository todoRepository) => _todoRepository = todoRepository;
 
         /// <summary>
         /// GET
@@ -22,7 +22,7 @@ namespace TodoApiNet.Controllers
         #region snippet_GetAll
 
         [HttpGet]
-        public async Task<IEnumerable<User>> GetAllAsync() => await _userRepository.GetAllAsync();
+        public async Task<IEnumerable<Todo>> GetAllAsync() => await _todoRepository.GetAllAsync();
 
         #endregion
 
@@ -31,11 +31,11 @@ namespace TodoApiNet.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(long id)
         {
-            var user = await _userRepository.GetByIdAsync(id);
+            var todo = await _todoRepository.GetByIdAsync(id);
 
-            if (user is null) { return NotFound(); }
+            if (todo is null) { return NotFound(); }
 
-            return Ok(user);
+            return Ok(todo);
         }
 
         #endregion
@@ -47,12 +47,12 @@ namespace TodoApiNet.Controllers
         #region snippet_Create
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(User user)
+        public async Task<IActionResult> CreateAsync(Todo todo)
         {
             if (ModelState.IsValid) 
             {
-                await _userRepository.CreateAsync(user);
-                return Ok(user);
+                await _todoRepository.Create(todo);
+                return Ok(todo);
             }
 
             return BadRequest();
@@ -67,13 +67,13 @@ namespace TodoApiNet.Controllers
         #region snippet_Update
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateAsync(long id, [FromBody] JsonPatchDocument<User> currentUser)
+        public async Task<IActionResult> UpdateAsync(long id, [FromBody] JsonPatchDocument<Todo> currentTodo)
         {
-            var newUser = await _userRepository.GetByIdAsync(id);
-            
-            if (newUser is null) { return NotFound(); }
+            var newTodo = await _todoRepository.GetByIdAsync(id);
 
-            await _userRepository.UpdateAsync(newUser, currentUser);
+            if (newTodo is null) { return NotFound(); }
+
+            await _todoRepository.UpdateAsync(newTodo, currentTodo);
             return NoContent();
         }
 
@@ -88,11 +88,11 @@ namespace TodoApiNet.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            var user = await _userRepository.GetByIdAsync(id);
+            var todo = await _todoRepository.GetByIdAsync(id);
 
-            if (user is null) { return NotFound(); }
+            if (todo is null) { return NotFound(); }
 
-            await _userRepository.DeleteAsync(id);
+            await _todoRepository.DeleteAsync(id);
             return NoContent();
         }
 

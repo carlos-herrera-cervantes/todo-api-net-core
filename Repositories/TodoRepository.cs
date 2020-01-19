@@ -52,6 +52,7 @@ namespace TodoApiNet.Repositories
         public async Task UpdateAsync(Todo newTodo, JsonPatchDocument<Todo> currentTodo)
         {
             currentTodo.ApplyTo(newTodo);
+            _context.Entry(newTodo).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
