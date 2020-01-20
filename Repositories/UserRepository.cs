@@ -26,13 +26,19 @@ namespace TodoApiNet.Repositories
         #region snippet_GetById
 
         public async Task<User> GetByIdAsync(long id) => await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
-     
+
+        #endregion
+
+        #region snippet_GetByEmail
+
+        public async Task<User> GetByEmailAsync(string email) => await _context.Users.AsTracking().FirstOrDefaultAsync(u => u.Email == email);
+
         #endregion
 
         /// <summary>
         /// POST
         /// </summary>
-        
+
         #region snippet_Create
 
         public async Task CreateAsync(User user)

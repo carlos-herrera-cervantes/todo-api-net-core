@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using TodoApiNet.Models;
@@ -7,6 +8,7 @@ using TodoApiNet.Repositories;
 
 namespace TodoApiNet.Controllers
 {
+    [Authorize]
     [Route("api/v1/todos")]
     [ApiController]
     public class TodoController : ControllerBase
