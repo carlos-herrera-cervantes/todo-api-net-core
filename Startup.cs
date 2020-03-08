@@ -2,10 +2,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Contexts;
 using TodoApiNet.Repositories;
@@ -38,7 +38,9 @@ namespace TodoApiNet
             });
 
             services.AddControllers().AddNewtonsoftJson();
-            services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
+            services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
+            services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
+            //services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITodoRepository, TodoRepository>();
         }

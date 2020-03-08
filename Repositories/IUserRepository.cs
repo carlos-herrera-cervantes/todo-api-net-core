@@ -11,12 +11,12 @@ namespace TodoApiNet.Repositories
 
          Task<IEnumerable<User>> GetAllAsync();
 
-         Task<User> GetByIdAsync(long id);
+         Task<User> GetByIdAsync(string id);
   
          Task<User> GetByEmailAsync(string email);
 
-         Task UpdateAsync(User newUser, JsonPatchDocument<User> currentUser);
+         Task UpdateAsync(string id, User newUser, JsonPatchDocument<User> currentUser);
 
-         Task DeleteAsync(long id);
+         Task DeleteAsync(string id);
     }
 }

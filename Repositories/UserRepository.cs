@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using TodoApiNet.Contexts;
 using TodoApiNet.Models;
 
@@ -9,9 +10,14 @@ namespace TodoApiNet.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly TodoApiContext _context;
+        private readonly IMongoCollection<User> _context;
 
-        public UserRepository(TodoApiContext context) => _context = context;
+        public UserRepository(IMongoDBSettings context)
+        {
+            var client = new MongoClient(context.ConnectionString);
+            var database = client.GetDatabase(context.Database);
+            _context = database.GetCollection<User>("Users");
+        }
 
         /// <summary>
         /// GET
@@ -19,19 +25,19 @@ namespace TodoApiNet.Repositories
         
         #region snippet_GetAll
 
-        public async Task<IEnumerable<User>> GetAllAsync() => await _context.Users.ToListAsync();
+        public async Task<IEnumerable<User>> GetAllAsync() => await _context.Find(user => true).ToListAsync();
 
         #endregion
 
         #region snippet_GetById
 
-        public async Task<User> GetByIdAsync(long id) => await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
+        public async Task<User> GetByIdAsync(string id) => await _context.Find<User>(user => user.Id == id).FirstOrDefaultAsync();
 
         #endregion
 
         #region snippet_GetByEmail
 
-        public async Task<User> GetByEmailAsync(string email) => await _context.Users.AsTracking().FirstOrDefaultAsync(u => u.Email == email);
+        public async Task<User> GetByEmailAsync(string email) => await _context.Find<User>(user => user.Email == email).FirstOrDefaultAsync();
 
         #endregion
 
@@ -41,11 +47,7 @@ namespace TodoApiNet.Repositories
 
         #region snippet_Create
 
-        public async Task CreateAsync(User user)
-        {
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-        }
+        public async Task CreateAsync(User user) => await _context.InsertOneAsync(user);
 
         #endregion
 
@@ -55,11 +57,10 @@ namespace TodoApiNet.Repositories
 
         #region snippet_Update
 
-        public async Task UpdateAsync(User newUser, JsonPatchDocument<User> currentUser)
+        public async Task UpdateAsync(string id, User newUser, JsonPatchDocument<User> currentUser)
         {
             currentUser.ApplyTo(newUser);
-            _context.Entry(newUser).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _context.ReplaceOneAsync(user => user.Id == id, newUser);
         }
 
         #endregion
@@ -70,11 +71,7 @@ namespace TodoApiNet.Repositories
 
         #region snippet_Delete
 
-        public async Task DeleteAsync(long id)
-        {
-            _context.Users.Remove(new User { Id = id });
-            await _context.SaveChangesAsync();
-        }
+        public async Task DeleteAsync(string id) => await _context.DeleteOneAsync(user => user.Id == id);
 
         #endregion
     }

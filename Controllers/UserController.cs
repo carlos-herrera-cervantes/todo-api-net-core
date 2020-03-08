@@ -31,7 +31,7 @@ namespace TodoApiNet.Controllers
         #region snippet_GetById
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(long id)
+        public async Task<IActionResult> GetByIdAsync(string id)
         {
             var user = await _userRepository.GetByIdAsync(id);
 
@@ -48,6 +48,7 @@ namespace TodoApiNet.Controllers
 
         #region snippet_Create
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> CreateAsync(User user)
         {
@@ -56,7 +57,7 @@ namespace TodoApiNet.Controllers
                 await _userRepository.CreateAsync(user);
                 return Ok(user);
             }
-
+            
             return BadRequest();
         }
 
@@ -69,13 +70,13 @@ namespace TodoApiNet.Controllers
         #region snippet_Update
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateAsync(long id, [FromBody] JsonPatchDocument<User> currentUser)
+        public async Task<IActionResult> UpdateAsync(string id, [FromBody] JsonPatchDocument<User> currentUser)
         {
             var newUser = await _userRepository.GetByIdAsync(id);
             
             if (newUser is null) { return NotFound(); }
 
-            await _userRepository.UpdateAsync(newUser, currentUser);
+            await _userRepository.UpdateAsync(id, newUser, currentUser);
             return NoContent();
         }
 
@@ -88,7 +89,7 @@ namespace TodoApiNet.Controllers
         #region snippet_Delete
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(long id)
+        public async Task<IActionResult> DeleteAsync(string id)
         {
             var user = await _userRepository.GetByIdAsync(id);
 

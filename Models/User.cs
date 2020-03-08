@@ -1,10 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TodoApiNet.Models
 {
     public class User
     {
-        public long Id { get; set; }
+        #region snippet_Properties
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -19,5 +26,13 @@ namespace TodoApiNet.Models
         [Required]
         [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; }
+
+        #endregion
+
+        #region snippet_ForeignKeys
+
+        public List<string> Notes { get; set; }
+
+        #endregion
     }
 }

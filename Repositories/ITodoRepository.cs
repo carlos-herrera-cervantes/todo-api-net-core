@@ -9,12 +9,12 @@ namespace TodoApiNet.Repositories
     {
          Task<IEnumerable<Todo>> GetAllAsync();
 
-         Task<Todo> GetByIdAsync(long id);
+         Task<Todo> GetByIdAsync(string id);
 
          Task Create(Todo todo);
 
-         Task UpdateAsync(Todo newTodo, JsonPatchDocument<Todo> currentTodo);
+         Task UpdateAsync(string id, Todo newTodo, JsonPatchDocument<Todo> currentTodo);
 
-         Task DeleteAsync(long id);
+         Task DeleteAsync(string id);
     }
 }
