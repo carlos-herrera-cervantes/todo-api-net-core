@@ -31,7 +31,7 @@ namespace TodoApiNet.Models
 
         #region snippet_ForeignKeys
 
-        public List<string> Notes { get; set; }
+        public List<string> Todos { get; set; } = new List<string>();
 
         #endregion
     }

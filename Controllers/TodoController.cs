@@ -14,8 +14,13 @@ namespace TodoApiNet.Controllers
     public class TodoController : ControllerBase
     {
         private readonly ITodoRepository _todoRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TodoController(ITodoRepository todoRepository) => _todoRepository = todoRepository;
+        public TodoController(ITodoRepository todoRepository, IUserRepository userRepository)
+        {
+            _todoRepository = todoRepository;
+            _userRepository = userRepository;
+        }
 
         /// <summary>
         /// GET
@@ -48,12 +53,20 @@ namespace TodoApiNet.Controllers
 
         #region snippet_Create
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync(Todo todo)
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> CreateAsync(string userId, [FromBody] Todo todo)
         {
-            if (ModelState.IsValid) 
+            var newUser = await _userRepository.GetByIdAsync(userId);
+
+            if (newUser is null) { return NotFound(); }
+
+            todo.UserId = userId;
+
+            if (ModelState.IsValid)
             {
                 await _todoRepository.Create(todo);
+                await UpdateTodosUser(newUser, todo.Id, addTodo: true);
+
                 return Ok(todo);
             }
 
@@ -76,6 +89,7 @@ namespace TodoApiNet.Controllers
             if (newTodo is null) { return NotFound(); }
 
             await _todoRepository.UpdateAsync(id, newTodo, currentTodo);
+
             return NoContent();
         }
 
@@ -94,8 +108,31 @@ namespace TodoApiNet.Controllers
 
             if (todo is null) { return NotFound(); }
 
+            var user = await _userRepository.GetByIdAsync(todo.UserId);
+
+            await UpdateTodosUser(user, todo.Id, addTodo: false);
             await _todoRepository.DeleteAsync(id);
+            
             return NoContent();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// HELPERS
+        /// </summary>
+
+        #region snippet_UpdateUser
+
+        private async Task UpdateTodosUser(User newUser, string todoId, bool addTodo)
+        {
+            if (newUser is null) { return; }
+            if (addTodo) { newUser.Todos.Add(todoId); } else { newUser.Todos.Remove(todoId); }
+
+            var jsonPatchDocument = new JsonPatchDocument<User>();
+            jsonPatchDocument.Replace(user => user.Todos, newUser.Todos);
+
+            await _userRepository.UpdateAsync(newUser.Id, newUser, jsonPatchDocument);
         }
 
         #endregion

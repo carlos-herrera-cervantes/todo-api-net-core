@@ -25,7 +25,6 @@ namespace TodoApiNet.Models
 
         #region snippet_ForeignKeys
 
-        [Required]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; }
 
