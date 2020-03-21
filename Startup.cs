@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Contexts;
+using TodoApiNet.Middlewares;
 using TodoApiNet.Repositories;
 
 namespace TodoApiNet
@@ -39,6 +40,8 @@ namespace TodoApiNet
 
             services.AddControllers().AddNewtonsoftJson();
             services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
+            services.AddScoped<EmailFilter>();
+            services.AddScoped<ValidatorModel>();
             services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
             //services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
             services.AddTransient<IUserRepository, UserRepository>();

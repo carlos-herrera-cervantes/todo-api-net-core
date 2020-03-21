@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -50,15 +51,12 @@ namespace TodoApiNet.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [ServiceFilter(typeof(ValidatorModel))]
+        [ServiceFilter(typeof(EmailFilter))]
         public async Task<IActionResult> CreateAsync(User user)
         {
-            if (ModelState.IsValid) 
-            {
-                await _userRepository.CreateAsync(user);
-                return Ok(user);
-            }
-            
-            return BadRequest();
+            await _userRepository.CreateAsync(user);
+            return Ok(user);
         }
 
         #endregion

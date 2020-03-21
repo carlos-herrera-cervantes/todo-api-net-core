@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -54,6 +55,7 @@ namespace TodoApiNet.Controllers
         #region snippet_Create
 
         [HttpPost("{userId}")]
+        [ServiceFilter(typeof(ValidatorModel))]
         public async Task<IActionResult> CreateAsync(string userId, [FromBody] Todo todo)
         {
             var newUser = await _userRepository.GetByIdAsync(userId);
@@ -62,15 +64,10 @@ namespace TodoApiNet.Controllers
 
             todo.UserId = userId;
 
-            if (ModelState.IsValid)
-            {
-                await _todoRepository.Create(todo);
-                await UpdateTodosUser(newUser, todo.Id, addTodo: true);
+            await _todoRepository.Create(todo);
+            await UpdateTodosUser(newUser, todo.Id, addTodo: true);
 
-                return Ok(todo);
-            }
-
-            return BadRequest();
+            return Ok(todo);
         }
 
         #endregion
@@ -112,7 +109,7 @@ namespace TodoApiNet.Controllers
 
             await UpdateTodosUser(user, todo.Id, addTodo: false);
             await _todoRepository.DeleteAsync(id);
-            
+
             return NoContent();
         }
 
