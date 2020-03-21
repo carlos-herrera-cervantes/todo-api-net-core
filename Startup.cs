@@ -1,10 +1,15 @@
+using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Contexts;
@@ -21,6 +26,7 @@ namespace TodoApiNet
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -38,11 +44,16 @@ namespace TodoApiNet
                 };
             });
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers().AddNewtonsoftJson().AddDataAnnotationsLocalization(options =>
+            {
+                options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResources));
+            });
             services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
             services.AddScoped<EmailFilter>();
             services.AddScoped<ValidatorModel>();
             services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
+            services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
+            services.AddSingleton<IStringLocalizer, JsonStringLocalizer>();
             //services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITodoRepository, TodoRepository>();
@@ -52,6 +63,20 @@ namespace TodoApiNet
         {
             if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
 
+            var cultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("es-MX")
+            };
+
+            app.UseRequestLocalization(options => 
+            {
+                options.DefaultRequestCulture = new RequestCulture("es-MX");
+                options.SupportedCultures = cultures;
+                options.SupportedUICultures = cultures;
+            });
+
+            app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>().Value);
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();

@@ -15,8 +15,7 @@ namespace TodoApiNet.Middlewares
 
             if (!context.ModelState.IsValid) 
             {
-                var objectResult = new { Message = "Faltan uno o más campos." };
-                context.Result = new BadRequestObjectResult(objectResult);
+                context.Result = new BadRequestObjectResult("");
                 return;
             }
 

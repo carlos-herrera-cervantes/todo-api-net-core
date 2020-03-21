@@ -58,3 +58,4 @@
 /home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.csproj.CopyComplete
 /home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.dll
 /home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.pdb
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/localization.json

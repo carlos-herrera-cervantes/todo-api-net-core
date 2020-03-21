@@ -13,17 +13,17 @@ namespace TodoApiNet.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "FirstNameRequired")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "LastNameRequired")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "EmailRequired")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "PasswordRequired")]
         [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; }
 

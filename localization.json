@@ -1,0 +1,51 @@
+[
+    {
+        "Key": "EmailAlreadyExists",
+        "LocalizedValue": {
+            "es-MX": "Ya hay un usuario con ese email registrado.",
+            "en-US": "There are a user with this email registered."
+        }
+    },
+    {
+        "Key": "FirstNameRequired",
+        "LocalizedValue": {
+            "es-MX": "El nombre es un campo obligatorio.",
+            "en-US": "The name is a required field."
+        }
+    },
+    {
+        "Key": "LastNameRequired",
+        "LocalizedValue": {
+            "es-MX": "El apellido es un campo obligatorio.",
+            "en-US": "The lastname is a required field."
+        }
+    },
+    {
+        "Key": "EmailRequired",
+        "LocalizedValue": {
+            "es-MX": "El correo electrónico es un campo obligatorio.",
+            "en-US": "The email is a required field."
+        }
+    },
+    {
+        "Key": "PasswordRequired",
+        "LocalizedValue": {
+            "es-MX": "La contraseña es un campo obligatorio.",
+            "en-US": "The password is a required field."
+        }
+    },
+    {
+        "Key": "TitleRequired",
+        "LocalizedValue": {
+            "es-MX": "El titulo es un campo obligatorio.",
+            "en-US": "The title is a required field."
+        }
+    },
+    {
+        "Key": "DescriptionRequired",
+        "LocalizedValue": {
+            "es-MX": "La descripción es un campo obligatorio",
+            "en-US": "The description is a required field."
+        }
+    }
+]
