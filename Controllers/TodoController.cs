@@ -37,14 +37,8 @@ namespace TodoApiNet.Controllers
         #region snippet_GetById
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(string id)
-        {
-            var todo = await _todoRepository.GetByIdAsync(id);
-
-            if (todo is null) { return NotFound(); }
-
-            return Ok(todo);
-        }
+        [TodoExists]
+        public async Task<IActionResult> GetByIdAsync(string id) => Ok(await _todoRepository.GetByIdAsync(id));
 
         #endregion
 
@@ -55,7 +49,6 @@ namespace TodoApiNet.Controllers
         #region snippet_Create
 
         [HttpPost("{userId}")]
-        [ServiceFilter(typeof(ValidatorModel))]
         public async Task<IActionResult> CreateAsync(string userId, [FromBody] Todo todo)
         {
             var newUser = await _userRepository.GetByIdAsync(userId);
@@ -79,12 +72,10 @@ namespace TodoApiNet.Controllers
         #region snippet_Update
 
         [HttpPatch("{id}")]
+        [TodoExists]
         public async Task<IActionResult> UpdateAsync(string id, [FromBody] JsonPatchDocument<Todo> currentTodo)
         {
             var newTodo = await _todoRepository.GetByIdAsync(id);
-
-            if (newTodo is null) { return NotFound(); }
-
             await _todoRepository.UpdateAsync(id, newTodo, currentTodo);
 
             return NoContent();
@@ -99,12 +90,10 @@ namespace TodoApiNet.Controllers
         #region snippet_Delete
 
         [HttpDelete("{id}")]
+        [TodoExists]
         public async Task<IActionResult> DeleteAsync(string id)
         {
             var todo = await _todoRepository.GetByIdAsync(id);
-
-            if (todo is null) { return NotFound(); }
-
             var user = await _userRepository.GetByIdAsync(todo.UserId);
 
             await UpdateTodosUser(user, todo.Id, addTodo: false);

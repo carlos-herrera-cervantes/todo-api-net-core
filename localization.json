@@ -47,5 +47,12 @@
             "es-MX": "La descripción es un campo obligatorio",
             "en-US": "The description is a required field."
         }
+    },
+    {
+        "Key": "ObjectIdIsValid",
+        "LocalizedValue": {
+            "es-MX": "El ID proporcionado no es válido.",
+            "en-US": "The entered ID is not valid."
+        }
     }
 ]
