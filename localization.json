@@ -54,5 +54,12 @@
             "es-MX": "El ID proporcionado no es válido.",
             "en-US": "The entered ID is not valid."
         }
+    },
+    {
+        "Key": "InvalidCredentials",
+        "LocalizedValue": {
+            "es-MX": "Email o contraseña incorrectos",
+            "en-US": "Wrong email or password"
+        }
     }
 ]

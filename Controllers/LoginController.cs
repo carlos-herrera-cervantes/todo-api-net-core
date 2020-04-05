@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -18,11 +19,13 @@ namespace TodoApiNet.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
+        private readonly IStringLocalizer<SharedResources> _localizer;
 
-        public LoginController(IUserRepository userRepository, IConfiguration configuration)
+        public LoginController(IUserRepository userRepository, IConfiguration configuration, IStringLocalizer<SharedResources> localizer)
         {
             _userRepository = userRepository;
             _configuration = configuration;
+            _localizer = localizer;
         }
 
         /// <summary>
@@ -36,7 +39,7 @@ namespace TodoApiNet.Controllers
         {
             var token = await GetToken(credentials);
 
-            if (token is false) return NotFound(new { Message = "Usuario o contraseña incorrectos" });
+            if (token is false) return NotFound(new { Message = _localizer["InvalidCredentials"].Value });
 
             return Ok(token);
         }

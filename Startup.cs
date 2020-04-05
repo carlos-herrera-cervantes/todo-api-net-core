@@ -12,7 +12,6 @@ using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Contexts;
-using TodoApiNet.Middlewares;
 using TodoApiNet.Repositories;
 
 namespace TodoApiNet
@@ -48,11 +47,9 @@ namespace TodoApiNet
                 options.DataAnnotationLocalizerProvider = (type, factory) => factory.Create(typeof(SharedResources));
             });
             services.Configure<MongoDBSettings>(Configuration.GetSection(nameof(MongoDBSettings)));
-            services.AddScoped<EmailFilter>();
             services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
             services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
             services.AddSingleton<IStringLocalizer, JsonStringLocalizer>();
-            //services.AddDbContext<TodoApiContext>(options => options.UseSqlite(Configuration["ConnectionStrings:default"]));
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITodoRepository, TodoRepository>();
         }

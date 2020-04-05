@@ -45,7 +45,7 @@ namespace TodoApiNet.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [ServiceFilter(typeof(EmailFilter))]
+        [EmailExists]
         public async Task<IActionResult> CreateAsync(User user)
         {
             await _userRepository.CreateAsync(user);
