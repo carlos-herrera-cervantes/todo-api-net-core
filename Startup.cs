@@ -73,6 +73,7 @@ namespace TodoApiNet
 
             app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>().Value);
             app.UseAuthentication();
+            app.UseUpdateDate();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());

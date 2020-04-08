@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -26,6 +27,12 @@ namespace TodoApiNet.Models
         [Required(ErrorMessage = "PasswordRequired")]
         [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; }
+
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         #endregion
 
