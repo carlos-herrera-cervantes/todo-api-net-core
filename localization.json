@@ -61,5 +61,12 @@
             "es-MX": "Email o contraseña incorrectos",
             "en-US": "Wrong email or password"
         }
+    },
+    {
+        "Key": "UserNotFound",
+        "LocalizedValue": {
+            "es-MX": "Usuario no encontrado.",
+            "en-US": "User not found."
+        }
     }
 ]

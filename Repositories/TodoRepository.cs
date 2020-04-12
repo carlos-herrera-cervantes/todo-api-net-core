@@ -25,7 +25,7 @@ namespace TodoApiNet.Repositories
 
         #region snippet_GetAll
 
-        public async Task<IEnumerable<Todo>> GetAllAsync() => await _context.Find(todo => true).ToListAsync();
+        public async Task<IEnumerable<Todo>> GetAllAsync(FilterDefinition<Todo> filter, string sort) => await _context.Find(filter).Sort(sort).ToListAsync();
 
         #endregion
 

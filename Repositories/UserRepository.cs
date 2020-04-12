@@ -25,7 +25,7 @@ namespace TodoApiNet.Repositories
         
         #region snippet_GetAll
 
-        public async Task<IEnumerable<User>> GetAllAsync() => await _context.Find(user => true).ToListAsync();
+        public async Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort) => await _context.Find(filter).Sort(sort).ToListAsync();
 
         #endregion
 
@@ -35,9 +35,9 @@ namespace TodoApiNet.Repositories
 
         #endregion
 
-        #region snippet_GetByEmail
+        #region snippet_GetOne
 
-        public async Task<User> GetByEmailAsync(string email) => await _context.Find<User>(user => user.Email == email).FirstOrDefaultAsync();
+        public async Task<User> GetOneAsync(FilterDefinition<User> filter) => await _context.Find<User>(filter).FirstOrDefaultAsync();
 
         #endregion
 

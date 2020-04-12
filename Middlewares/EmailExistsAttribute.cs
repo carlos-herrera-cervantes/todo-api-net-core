@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
+using TodoApiNet.Extensions;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -16,18 +17,15 @@ namespace TodoApiNet.Middlewares
             private readonly IUserRepository _userRepository;
             private readonly IStringLocalizer<SharedResources> _localizer;
 
-            public EmailExistsFilter(IUserRepository userRepository, IStringLocalizer<SharedResources> localizer)
-            {
-                _userRepository = userRepository;
-                _localizer = localizer;
-            }
+            public EmailExistsFilter(IUserRepository userRepository, IStringLocalizer<SharedResources> localizer) => (_userRepository, _localizer) = (userRepository, localizer);
 
             #region snippet_BeforeExecuted
 
             public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
             {
                 var user = context.ActionArguments["user"] as User;
-                var findedUser = await _userRepository.GetByEmailAsync(user.Email);
+                var filter = QueryObject<User>.CreateObjectQuery($"Email-{user.Email}");
+                var findedUser = await _userRepository.GetOneAsync(filter);
 
                 if (findedUser != null)
                 {

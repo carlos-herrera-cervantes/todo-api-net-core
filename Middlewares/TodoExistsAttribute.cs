@@ -16,11 +16,7 @@ namespace TodoApiNet.Middlewares
             private readonly ITodoRepository _todoRepository;
             private readonly IStringLocalizer<SharedResources> _localizer;
 
-            public TodoExistsFilter(ITodoRepository todoRepository, IStringLocalizer<SharedResources> localizer)
-            {
-                _todoRepository = todoRepository;
-                _localizer = localizer;
-            }
+            public TodoExistsFilter(ITodoRepository todoRepository, IStringLocalizer<SharedResources> localizer) => (_todoRepository, _localizer) = (todoRepository, localizer);
 
             #region snippet_BeforeExecuted
 

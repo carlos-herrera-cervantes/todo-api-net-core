@@ -16,11 +16,7 @@ namespace TodoApiNet.Middlewares
             private readonly IUserRepository _userRepository;
             private readonly IStringLocalizer<SharedResources> _localizer;
 
-            public UserExistsFilter(IUserRepository userRepository, IStringLocalizer<SharedResources> localizer)
-            {
-                _userRepository = userRepository;
-                _localizer = localizer;
-            }
+            public UserExistsFilter(IUserRepository userRepository, IStringLocalizer<SharedResources> localizer) => (_userRepository, _localizer) = (userRepository, localizer);
 
             #region snippet_BeforeExecuted
 
@@ -31,7 +27,7 @@ namespace TodoApiNet.Middlewares
                     var id = context.ActionArguments["id"] as string;
                     var user = await _userRepository.GetByIdAsync(id);
 
-                    if (user is null) { context.Result = new NotFoundResult(); return; }
+                    if (user is null) { context.Result = new NotFoundObjectResult(new { Message = _localizer["UserNotFound"].Value }); return; }
 
                     await next();
                 }

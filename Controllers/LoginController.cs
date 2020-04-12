@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
+using TodoApiNet.Extensions;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -21,12 +22,8 @@ namespace TodoApiNet.Controllers
         private readonly IConfiguration _configuration;
         private readonly IStringLocalizer<SharedResources> _localizer;
 
-        public LoginController(IUserRepository userRepository, IConfiguration configuration, IStringLocalizer<SharedResources> localizer)
-        {
-            _userRepository = userRepository;
-            _configuration = configuration;
-            _localizer = localizer;
-        }
+        public LoginController(IUserRepository userRepository, IConfiguration configuration, IStringLocalizer<SharedResources> localizer) => 
+            (_userRepository, _configuration, _localizer) = (userRepository, configuration, localizer);
 
         /// <summary>
         /// POST
@@ -95,7 +92,8 @@ namespace TodoApiNet.Controllers
 
         public async Task<dynamic> GetUserByEmail(string email)
         {
-            var user = await _userRepository.GetByEmailAsync(email);
+            var filter = QueryObject<User>.CreateObjectQuery($"Email-{email}");
+            var user = await _userRepository.GetOneAsync(filter);
 
             if (user is null) return false;
 

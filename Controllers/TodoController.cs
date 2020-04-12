@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using TodoApiNet.Extensions;
 using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -17,11 +19,7 @@ namespace TodoApiNet.Controllers
         private readonly ITodoRepository _todoRepository;
         private readonly IUserRepository _userRepository;
 
-        public TodoController(ITodoRepository todoRepository, IUserRepository userRepository)
-        {
-            _todoRepository = todoRepository;
-            _userRepository = userRepository;
-        }
+        public TodoController(ITodoRepository todoRepository, IUserRepository userRepository) => (_todoRepository, _userRepository) = (todoRepository, userRepository);
 
         /// <summary>
         /// GET
@@ -30,7 +28,12 @@ namespace TodoApiNet.Controllers
         #region snippet_GetAll
 
         [HttpGet]
-        public async Task<IEnumerable<Todo>> GetAllAsync() => await _todoRepository.GetAllAsync();
+        public async Task<IEnumerable<Todo>> GetAllAsync([FromQuery] Request querys)
+        {
+            var filterSort = String.IsNullOrEmpty(querys.Sort) ? "{}" : QueryObject<Todo>.CreateObjectQuerySort(querys.Sort);
+            var filter = QueryObject<Todo>.CreateObjectQuery("");
+            return await _todoRepository.GetAllAsync(filter, filterSort);
+        }
 
         #endregion
 

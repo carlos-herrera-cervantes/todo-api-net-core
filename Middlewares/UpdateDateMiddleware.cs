@@ -13,7 +13,7 @@ namespace TodoApiNet.Middlewares
     public class UpdateDateMiddleware
     {
         private readonly RequestDelegate _next;
-        
+
         public UpdateDateMiddleware(RequestDelegate next) => _next = next;
 
         #region snippet_ExecuteNextTask
@@ -38,21 +38,20 @@ namespace TodoApiNet.Middlewares
 
         private async Task<dynamic> ParseRequest(HttpContext context)
         {
-            using (var reader = new StreamReader(context.Request.Body))
-            {
-                var convertBody = JsonConvert.DeserializeObject<List<dynamic>>(await reader.ReadToEndAsync());
-                convertBody.Add(new { Op = "replace", Path = "UpdatedAt", Value = DateTime.UtcNow });
+            using var reader = new StreamReader(context.Request.Body);
+            var convertBody = JsonConvert.DeserializeObject<List<dynamic>>(await reader.ReadToEndAsync());
+            
+            convertBody.Add(new { Op = "replace", Path = "UpdatedAt", Value = DateTime.UtcNow });
 
-                var bytesToWrite = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(convertBody));
-                var injectedRequestStream = new MemoryStream();
+            var bytesToWrite = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(convertBody));
+            var injectedRequestStream = new MemoryStream();
 
-                await injectedRequestStream.WriteAsync(bytesToWrite, 0, bytesToWrite.Length);
-                
-                injectedRequestStream.Seek(0, SeekOrigin.Begin);
-                context.Request.Body = injectedRequestStream;
+            await injectedRequestStream.WriteAsync(bytesToWrite, 0, bytesToWrite.Length);
 
-                return context;
-            }
+            injectedRequestStream.Seek(0, SeekOrigin.Begin);
+            context.Request.Body = injectedRequestStream;
+
+            return context;
         }
 
         #endregion
