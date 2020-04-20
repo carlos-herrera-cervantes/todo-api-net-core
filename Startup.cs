@@ -70,8 +70,7 @@ namespace TodoApiNet
                 options.SupportedCultures = cultures;
                 options.SupportedUICultures = cultures;
             });
-
-            app.UseRequestLocalization(app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>().Value);
+            
             app.UseAuthentication();
             app.UseUpdateDate();
             app.UseRouting();

@@ -10,7 +10,7 @@ namespace TodoApiNet.Repositories
     {
          Task CreateAsync(User user);
 
-         Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort);
+         Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort, Request querys);
 
          Task<User> GetByIdAsync(string id);
 

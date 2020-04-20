@@ -68,5 +68,12 @@
             "es-MX": "Usuario no encontrado.",
             "en-US": "User not found."
         }
+    },
+    {
+        "Key": "InvalidPagination",
+        "LocalizedValue": {
+            "es-MX": "El valor de page debe ser mayor a 0 / El valor de pageSize debe estar entre 1 - 10",
+            "en-US": "The value of page must be greater than 0 / The value of pageSize must be between in 1 - 10"
+        }
     }
 ]

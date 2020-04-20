@@ -28,11 +28,13 @@ namespace TodoApiNet.Controllers
         #region snippet_GetAll
 
         [HttpGet]
+        [PaginateValidator]
         public async Task<IEnumerable<Todo>> GetAllAsync([FromQuery] Request querys)
         {
             var filterSort = String.IsNullOrEmpty(querys.Sort) ? "{}" : QueryObject<Todo>.CreateObjectQuerySort(querys.Sort);
             var filter = QueryObject<Todo>.CreateObjectQuery("");
-            return await _todoRepository.GetAllAsync(filter, filterSort);
+            var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
+            return await _todoRepository.GetAllAsync(filter, filterSort, objectPaginate);
         }
 
         #endregion
@@ -51,14 +53,13 @@ namespace TodoApiNet.Controllers
 
         #region snippet_Create
 
-        [HttpPost("{userId}")]
-        public async Task<IActionResult> CreateAsync(string userId, [FromBody] Todo todo)
+        [HttpPost("{id}")]
+        [UserExists]
+        public async Task<IActionResult> CreateAsync(string id, [FromBody] Todo todo)
         {
-            var newUser = await _userRepository.GetByIdAsync(userId);
+            var newUser = await _userRepository.GetByIdAsync(id);
 
-            if (newUser is null) { return NotFound(); }
-
-            todo.UserId = userId;
+            todo.UserId = id;
 
             await _todoRepository.Create(todo);
             await UpdateTodosUser(newUser, todo.Id, addTodo: true);

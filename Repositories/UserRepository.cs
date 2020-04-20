@@ -25,7 +25,7 @@ namespace TodoApiNet.Repositories
         
         #region snippet_GetAll
 
-        public async Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort) => await _context.Find(filter).Sort(sort).ToListAsync();
+        public async Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort, Request querys) => await _context.Find(filter).Skip(querys.Page * querys.PageSize).Limit(querys.PageSize).Sort(sort).ToListAsync();
 
         #endregion
 

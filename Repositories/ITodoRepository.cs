@@ -8,7 +8,7 @@ namespace TodoApiNet.Repositories
 {
     public interface ITodoRepository
     {
-         Task<IEnumerable<Todo>> GetAllAsync(FilterDefinition<Todo> filter, string sort);
+         Task<IEnumerable<Todo>> GetAllAsync(FilterDefinition<Todo> filter, string sort, Request querys);
 
          Task<Todo> GetByIdAsync(string id);
 

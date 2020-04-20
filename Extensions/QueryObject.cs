@@ -1,5 +1,6 @@
 using System;
 using MongoDB.Driver;
+using TodoApiNet.Models;
 
 namespace TodoApiNet.Extensions
 {
@@ -29,6 +30,22 @@ namespace TodoApiNet.Extensions
             var objectQuerySort = String.Format("{{ {0}: {1} }}", queryField, isAscending ? -1 : 1);
             
             return objectQuerySort;
+        }
+
+        #endregion
+
+        #region snippet_CreateObjectPaginate
+
+        public static Request CreateObjectPaginate(Request querys)
+        {
+            if (querys.Paginate)
+            {
+                querys.Page = querys.Page == 1 ? 0 : querys.Page == 0 ? 0 : querys.Page - 1;
+                return querys;
+            }
+
+            querys.PageSize = 0;
+            return querys;
         }
 
         #endregion

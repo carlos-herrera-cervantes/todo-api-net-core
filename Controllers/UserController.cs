@@ -28,10 +28,12 @@ namespace TodoApiNet.Controllers
         #region snippet_GetAll
 
         [HttpGet]
+        [PaginateValidator]
         public async Task<IEnumerable<User>> GetAllAsync([FromQuery] Request querys)
         {
             var objectQuery = CreateObjectForFilterAndSort<User>("", querys.Sort);
-            return await _userRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort);
+            var objectPaginate = QueryObject<User>.CreateObjectPaginate(querys);
+            return await _userRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
         }
 
         #endregion
@@ -48,10 +50,12 @@ namespace TodoApiNet.Controllers
 
         [HttpGet("{id}/todos")]
         [UserExists]
+        [PaginateValidator]
         public async Task<IEnumerable<Todo>> GetTodosByUserId(string id, [FromQuery] Request querys)
         {
             var objectQuery = CreateObjectForFilterAndSort<Todo>($"UserId-{id}", querys.Sort);
-            var todos = await _todoRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort);
+            var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
+            var todos = await _todoRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
             
             return todos;
         }
