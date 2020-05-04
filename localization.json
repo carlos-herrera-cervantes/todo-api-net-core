@@ -70,6 +70,13 @@
         }
     },
     {
+        "Key": "TodoNotFound",
+        "LocalizedValue": {
+            "es-MX": "Nota no encontrada",
+            "en-US": "to-do not found."
+        }
+    },
+    {
         "Key": "InvalidPagination",
         "LocalizedValue": {
             "es-MX": "El valor de page debe ser mayor a 0 / El valor de pageSize debe estar entre 1 - 10",

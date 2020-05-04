@@ -26,10 +26,11 @@ namespace TodoApiNet.Middlewares
                 var user = context.ActionArguments["user"] as User;
                 var filter = QueryObject<User>.CreateObjectQuery($"Email-{user.Email}");
                 var findedUser = await _userRepository.GetOneAsync(filter);
+                var response = new Response<IActionResult>() { Status = false, Message = _localizer["EmailAlreadyExists"].Value };
 
                 if (findedUser != null)
                 {
-                    context.Result = new BadRequestObjectResult(new { Message = _localizer["EmailAlreadyExists"].Value });
+                    context.Result = new BadRequestObjectResult(response);
                     return;
                 }
 

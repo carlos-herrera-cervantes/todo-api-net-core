@@ -29,11 +29,13 @@ namespace TodoApiNet.Controllers
 
         [HttpGet]
         [PaginateValidator]
-        public async Task<IEnumerable<User>> GetAllAsync([FromQuery] Request querys)
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
         {
             var objectQuery = CreateObjectForFilterAndSort<User>("", querys.Sort);
             var objectPaginate = QueryObject<User>.CreateObjectPaginate(querys);
-            return await _userRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
+            var users = await _userRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
+
+            return Ok(new Response<IEnumerable<User>>() { Status = true, Data = users });
         }
 
         #endregion
@@ -42,7 +44,7 @@ namespace TodoApiNet.Controllers
 
         [HttpGet("{id}")]
         [UserExists]
-        public async Task<IActionResult> GetByIdAsync(string id) => Ok(await _userRepository.GetByIdAsync(id));
+        public async Task<IActionResult> GetByIdAsync(string id) => Ok(new Response<User>() { Status = true, Data = await _userRepository.GetByIdAsync(id) });
 
         #endregion
 
@@ -51,13 +53,13 @@ namespace TodoApiNet.Controllers
         [HttpGet("{id}/todos")]
         [UserExists]
         [PaginateValidator]
-        public async Task<IEnumerable<Todo>> GetTodosByUserId(string id, [FromQuery] Request querys)
+        public async Task<IActionResult> GetTodosByUserId(string id, [FromQuery] Request querys)
         {
             var objectQuery = CreateObjectForFilterAndSort<Todo>($"UserId-{id}", querys.Sort);
             var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
             var todos = await _todoRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
             
-            return todos;
+            return Ok(new Response<IEnumerable<Todo>>() { Status = true, Data = todos });
         }
 
         #endregion
@@ -74,7 +76,7 @@ namespace TodoApiNet.Controllers
         public async Task<IActionResult> CreateAsync(User user)
         {
             await _userRepository.CreateAsync(user);
-            return Ok(user);
+            return Ok(new Response<User>() { Status = true, Data = user });
         }
 
         #endregion
@@ -91,7 +93,7 @@ namespace TodoApiNet.Controllers
         {
             var newUser = await _userRepository.GetByIdAsync(id);
             await _userRepository.UpdateAsync(id, newUser, currentUser);
-            return NoContent();
+            return Ok(new Response<User>() { Status = true, Data = newUser });
         }
 
         #endregion

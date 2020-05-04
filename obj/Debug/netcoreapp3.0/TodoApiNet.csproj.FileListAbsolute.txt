@@ -59,3 +59,5 @@
 /home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.dll
 /home/carlos/ubuntu/projects/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.pdb
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/localization.json
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.dll
+/home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

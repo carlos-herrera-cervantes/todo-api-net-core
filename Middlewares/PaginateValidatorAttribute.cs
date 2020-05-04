@@ -23,10 +23,11 @@ namespace TodoApiNet.Middlewares
             {
                 var paginate = context.ActionArguments["querys"] as Request;
                 var isValidPagination = paginate.Page < 1 && paginate.PageSize > 0 && paginate.PageSize < 11;
+                var response = new Response<IActionResult>() { Status = false, Message = _localizer["InvalidPagination"].Value };
                 
                 if (paginate.Paginate && isValidPagination)
                 {
-                    context.Result = new BadRequestObjectResult(new { messag = _localizer["InvalidPagination"].Value });
+                    context.Result = new BadRequestObjectResult(response);
                     return;
                 }
 

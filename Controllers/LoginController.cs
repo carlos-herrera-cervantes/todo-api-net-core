@@ -36,9 +36,9 @@ namespace TodoApiNet.Controllers
         {
             var token = await GetToken(credentials);
 
-            if (token is false) return NotFound(new { Message = _localizer["InvalidCredentials"].Value });
+            if (token is false) return NotFound(new Response<IActionResult>() { Status = false, Message = _localizer["InvalidCredentials"].Value });
 
-            return Ok(token);
+            return Ok(new Response<string>() { Status = true, Data = token });
         }
 
         #endregion

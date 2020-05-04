@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
+using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
 namespace TodoApiNet.Middlewares
@@ -26,14 +27,16 @@ namespace TodoApiNet.Middlewares
                 {
                     var id = context.ActionArguments["id"] as string;
                     var user = await _userRepository.GetByIdAsync(id);
+                    var  response = new Response<IActionResult>() { Status = false, Message = _localizer["UserNotFound"].Value };
 
-                    if (user is null) { context.Result = new NotFoundObjectResult(new { Message = _localizer["UserNotFound"].Value }); return; }
+                    if (user is null) { context.Result = new NotFoundObjectResult(response); return; }
 
                     await next();
                 }
                 catch (FormatException)
                 {
-                    context.Result = new BadRequestObjectResult(new { Message = _localizer["ObjectIdIsValid"].Value });
+                    var response = new Response<IActionResult>() { Status = false, Message = _localizer["ObjectIdIsValid"].Value };
+                    context.Result = new BadRequestObjectResult(response);
                     return;
                 }
             }

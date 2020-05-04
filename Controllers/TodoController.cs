@@ -29,12 +29,14 @@ namespace TodoApiNet.Controllers
 
         [HttpGet]
         [PaginateValidator]
-        public async Task<IEnumerable<Todo>> GetAllAsync([FromQuery] Request querys)
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
         {
             var filterSort = String.IsNullOrEmpty(querys.Sort) ? "{}" : QueryObject<Todo>.CreateObjectQuerySort(querys.Sort);
             var filter = QueryObject<Todo>.CreateObjectQuery("");
             var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
-            return await _todoRepository.GetAllAsync(filter, filterSort, objectPaginate);
+            var todos = await _todoRepository.GetAllAsync(filter, filterSort, objectPaginate);
+
+            return Ok(new Response<IEnumerable<Todo>>() { Status = true, Data = todos });
         }
 
         #endregion
@@ -43,7 +45,7 @@ namespace TodoApiNet.Controllers
 
         [HttpGet("{id}")]
         [TodoExists]
-        public async Task<IActionResult> GetByIdAsync(string id) => Ok(await _todoRepository.GetByIdAsync(id));
+        public async Task<IActionResult> GetByIdAsync(string id) => Ok(new Response<Todo>() { Status = true, Data = await _todoRepository.GetByIdAsync(id) });
 
         #endregion
 
@@ -64,7 +66,7 @@ namespace TodoApiNet.Controllers
             await _todoRepository.Create(todo);
             await UpdateTodosUser(newUser, todo.Id, addTodo: true);
 
-            return Ok(todo);
+            return Ok(new Response<Todo>() { Status = true, Data = todo });
         }
 
         #endregion
@@ -82,7 +84,7 @@ namespace TodoApiNet.Controllers
             var newTodo = await _todoRepository.GetByIdAsync(id);
             await _todoRepository.UpdateAsync(id, newTodo, currentTodo);
 
-            return NoContent();
+            return Ok(new Response<Todo>() { Status = true, Data = newTodo });
         }
 
         #endregion
