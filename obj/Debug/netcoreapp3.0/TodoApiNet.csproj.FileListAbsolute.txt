@@ -61,3 +61,129 @@
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/localization.json
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.dll
 /home/carlos/ubuntu/projects/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.Development.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/localization.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.deps.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.dev.json
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.pdb
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/DnsClient.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.Data.Sqlite.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.DotNet.PlatformAbstractions.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Sqlite.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.Extensions.DependencyModel.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Bson.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Driver.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Driver.Core.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Libmongocrypt.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.Bson.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/SharpCompress.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.batteries_v2.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.nativelibrary.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.core.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.provider.dynamic_cdecl.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/alpine-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-arm/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-arm64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-armel/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-musl-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-x86/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/osx-x64/native/libe_sqlite3.dylib
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-arm/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-arm64/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-x64/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.csprojAssemblyReference.cache
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.Manifest.cache
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.xml
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.MvcApplicationPartsAssemblyInfo.cache
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfoInputs.cache
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfo.cs
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.RazorTargetAssemblyInfo.cache
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.csproj.CopyComplete
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/NET Core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.pdb
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.Development.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/appsettings.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/localization.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.deps.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.runtimeconfig.dev.json
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/TodoApiNet.pdb
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/DnsClient.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.Data.Sqlite.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.DotNet.PlatformAbstractions.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.EntityFrameworkCore.Sqlite.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.Extensions.DependencyModel.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Bson.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Driver.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Driver.Core.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/MongoDB.Libmongocrypt.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/Newtonsoft.Json.Bson.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/SharpCompress.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.batteries_v2.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.nativelibrary.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.core.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/SQLitePCLRaw.provider.dynamic_cdecl.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/alpine-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-arm/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-arm64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-armel/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-musl-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-x64/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/linux-x86/native/libe_sqlite3.so
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/osx-x64/native/libe_sqlite3.dylib
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-arm/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-arm64/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-x64/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/bin/Debug/netcoreapp3.0/runtimes/win-x86/native/e_sqlite3.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.csprojAssemblyReference.cache
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.Manifest.cache
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/staticwebassets/TodoApiNet.StaticWebAssets.xml
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.MvcApplicationPartsAssemblyInfo.cache
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfoInputs.cache
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.AssemblyInfo.cs
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.RazorTargetAssemblyInfo.cache
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.csproj.CopyComplete
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.dll
+/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/Debug/netcoreapp3.0/TodoApiNet.pdb

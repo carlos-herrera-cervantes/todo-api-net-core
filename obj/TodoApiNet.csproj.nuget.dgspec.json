@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/carlos/ubuntu/projects/TodoApiNet/TodoApiNet.csproj": {}
+    "/home/carlos/ubuntu/projects/net_core/TodoApiNet/TodoApiNet.csproj": {}
   },
   "projects": {
-    "/home/carlos/ubuntu/projects/TodoApiNet/TodoApiNet.csproj": {
+    "/home/carlos/ubuntu/projects/net_core/TodoApiNet/TodoApiNet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/carlos/ubuntu/projects/TodoApiNet/TodoApiNet.csproj",
+        "projectUniqueName": "/home/carlos/ubuntu/projects/net_core/TodoApiNet/TodoApiNet.csproj",
         "projectName": "TodoApiNet",
-        "projectPath": "/home/carlos/ubuntu/projects/TodoApiNet/TodoApiNet.csproj",
+        "projectPath": "/home/carlos/ubuntu/projects/net_core/TodoApiNet/TodoApiNet.csproj",
         "packagesPath": "/home/carlos/.nuget/packages/",
-        "outputPath": "/home/carlos/ubuntu/projects/TodoApiNet/obj/",
+        "outputPath": "/home/carlos/ubuntu/projects/net_core/TodoApiNet/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/carlos/.nuget/NuGet/NuGet.Config"

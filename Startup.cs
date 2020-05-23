@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -11,8 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using TodoApiNet.Contexts;
+using TodoApiNet.Extensions;
 using TodoApiNet.Repositories;
 
 namespace TodoApiNet
@@ -26,23 +24,7 @@ namespace TodoApiNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SecretKey"))),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
+            services.AddTokenAuthentication(Configuration);
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers().AddNewtonsoftJson().AddDataAnnotationsLocalization(options =>
             {
