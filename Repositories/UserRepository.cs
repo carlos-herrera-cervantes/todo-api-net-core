@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using TodoApiNet.Contexts;
+using TodoApiNet.Extensions;
 using TodoApiNet.Models;
 
 namespace TodoApiNet.Repositories
@@ -25,7 +26,8 @@ namespace TodoApiNet.Repositories
         
         #region snippet_GetAll
 
-        public async Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort, Request querys) => await _context.Find(filter).Skip(querys.Page * querys.PageSize).Limit(querys.PageSize).Sort(sort).ToListAsync();
+        public async Task<IEnumerable<User>> GetAllAsync(Request queryParameters) => 
+            await MongoDBFilter<User>.GetDocuments(_context, queryParameters, new User().Relations);
 
         #endregion
 
@@ -37,7 +39,8 @@ namespace TodoApiNet.Repositories
 
         #region snippet_GetOne
 
-        public async Task<User> GetOneAsync(FilterDefinition<User> filter) => await _context.Find<User>(filter).FirstOrDefaultAsync();
+        public async Task<User> GetOneAsync(Request queryParameters) => 
+            await MongoDBFilter<User>.GetDocument(_context, queryParameters, new User().Relations);
 
         #endregion
 

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
-using TodoApiNet.Extensions;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -49,7 +48,7 @@ namespace TodoApiNet.Controllers
 
         #region snippet_GetToken
         
-        public async Task<dynamic> GetToken(Credentials credentials)
+        private async Task<dynamic> GetToken(Credentials credentials)
         {
             var isValidCredentials = await ValidateCredentials(credentials);
 
@@ -73,7 +72,7 @@ namespace TodoApiNet.Controllers
 
         #region snippet_ValidateCredentials
 
-        public async Task<bool> ValidateCredentials(Credentials credentials)
+        private async Task<bool> ValidateCredentials(Credentials credentials)
         {
             var user = await GetUserByEmail(credentials.Email);
 
@@ -90,10 +89,10 @@ namespace TodoApiNet.Controllers
 
         #region snippet_GetUserByEmail
 
-        public async Task<dynamic> GetUserByEmail(string email)
+        private async Task<dynamic> GetUserByEmail(string email)
         {
-            var filter = QueryObject<User>.CreateObjectQuery($"Email-{email}");
-            var user = await _userRepository.GetOneAsync(filter);
+            var queryParameters = new Request { Filters = new string[] { $"Email={email}" } };
+            var user = await _userRepository.GetOneAsync(queryParameters);
 
             if (user is null) return false;
 

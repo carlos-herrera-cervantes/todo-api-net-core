@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
-using MongoDB.Driver;
 using TodoApiNet.Models;
 
 namespace TodoApiNet.Repositories
 {
     public interface ITodoRepository
     {
-         Task<IEnumerable<Todo>> GetAllAsync(FilterDefinition<Todo> filter, string sort, Request querys);
+         Task<IEnumerable<Todo>> GetAllAsync(Request querys);
 
          Task<Todo> GetByIdAsync(string id);
 

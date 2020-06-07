@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace TodoApiNet.Models
 {
@@ -34,6 +36,26 @@ namespace TodoApiNet.Models
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; }
+
+        [BsonIgnoreIfNull]
+        [JsonProperty("usersEmbedded", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public List<User> UsersEmbedded { get; set; } = null;
+
+        #endregion
+
+        #region snippet_Relations
+
+        [BsonIgnore]
+        [JsonIgnore]
+        public List<Relation> Relations { get; set; } = new List<Relation>
+        {
+            new Relation
+            {
+                Entity = "Users",
+                LocalKey = "UserId",
+                ForeignKey = "_id"
+            }
+        };
 
         #endregion
     }

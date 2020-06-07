@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using TodoApiNet.Extensions;
 using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -29,15 +27,12 @@ namespace TodoApiNet.Controllers
 
         [HttpGet]
         [PaginateValidator]
-        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
-        {
-            var filterSort = String.IsNullOrEmpty(querys.Sort) ? "{}" : QueryObject<Todo>.CreateObjectQuerySort(querys.Sort);
-            var filter = QueryObject<Todo>.CreateObjectQuery("");
-            var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
-            var todos = await _todoRepository.GetAllAsync(filter, filterSort, objectPaginate);
-
-            return Ok(new Response<IEnumerable<Todo>>() { Status = true, Data = todos });
-        }
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys) =>
+            Ok(new Response<IEnumerable<Todo>>
+            {
+                Status = true,
+                Data = await _todoRepository.GetAllAsync(querys)
+            });
 
         #endregion
 

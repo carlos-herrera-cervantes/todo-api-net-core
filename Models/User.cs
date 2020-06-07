@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,6 +40,26 @@ namespace TodoApiNet.Models
         #region snippet_ForeignKeys
 
         public List<string> Todos { get; set; } = new List<string>();
+
+        [BsonIgnoreIfNull]
+        [JsonProperty("todosEmbedded", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public List<Todo> TodosEmbedded { get; set; } = null;
+
+        #endregion
+
+        #region snippet_Relations
+
+        [BsonIgnore]
+        [JsonIgnore]
+        public List<Relation> Relations { get; set; } = new List<Relation>
+        {
+            new Relation 
+            {
+                Entity = "Todos",
+                LocalKey = "_id",
+                ForeignKey = "UserId"
+            }
+        };
 
         #endregion
     }

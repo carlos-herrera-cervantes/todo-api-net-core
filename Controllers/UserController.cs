@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using TodoApiNet.Extensions;
 using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -29,14 +27,12 @@ namespace TodoApiNet.Controllers
 
         [HttpGet]
         [PaginateValidator]
-        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
-        {
-            var objectQuery = CreateObjectForFilterAndSort<User>("", querys.Sort);
-            var objectPaginate = QueryObject<User>.CreateObjectPaginate(querys);
-            var users = await _userRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
-
-            return Ok(new Response<IEnumerable<User>>() { Status = true, Data = users });
-        }
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys) =>
+            Ok(new Response<IEnumerable<User>>
+            {
+                Status = true,
+                Data = await _userRepository.GetAllAsync(querys)
+            });
 
         #endregion
 
@@ -55,11 +51,13 @@ namespace TodoApiNet.Controllers
         [PaginateValidator]
         public async Task<IActionResult> GetTodosByUserId(string id, [FromQuery] Request querys)
         {
-            var objectQuery = CreateObjectForFilterAndSort<Todo>($"UserId-{id}", querys.Sort);
-            var objectPaginate = QueryObject<Todo>.CreateObjectPaginate(querys);
-            var todos = await _todoRepository.GetAllAsync(objectQuery.Filter, objectQuery.FilterSort, objectPaginate);
-            
-            return Ok(new Response<IEnumerable<Todo>>() { Status = true, Data = todos });
+            querys.Filters = new string[] { $"UserId={id}" };
+
+            return Ok(new Response<IEnumerable<Todo>>
+            {
+                Status = true,
+                Data = await _todoRepository.GetAllAsync(querys)
+            });
         }
 
         #endregion
@@ -110,22 +108,6 @@ namespace TodoApiNet.Controllers
         {
             await _userRepository.DeleteAsync(id);
             return NoContent();
-        }
-
-        #endregion
-
-        /// <summary>
-        /// HELPERS
-        /// </summary>
-
-        #region snippet_CreateObjectForFilterAndSort
-
-        private dynamic CreateObjectForFilterAndSort<T>(string query, string sort) where T : class        
-        {
-            var filterSort = String.IsNullOrEmpty(sort) ? "{}" : QueryObject<T>.CreateObjectQuerySort(sort);
-            var filter = QueryObject<T>.CreateObjectQuery(query);
-
-            return new { Filter = filter, FilterSort = filterSort };
         }
 
         #endregion

@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Localization;
-using TodoApiNet.Extensions;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
 
@@ -24,8 +23,8 @@ namespace TodoApiNet.Middlewares
             public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
             {
                 var user = context.ActionArguments["user"] as User;
-                var filter = QueryObject<User>.CreateObjectQuery($"Email-{user.Email}");
-                var findedUser = await _userRepository.GetOneAsync(filter);
+                var queryParameters = new Request { Filters = new string[] { $"Email={user.Email}" } };
+                var findedUser = await _userRepository.GetOneAsync(queryParameters);
                 var response = new Response<IActionResult>() { Status = false, Message = _localizer["EmailAlreadyExists"].Value };
 
                 if (findedUser != null)

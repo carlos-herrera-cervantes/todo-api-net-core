@@ -4,17 +4,17 @@ using TodoApiNet.Models;
 
 namespace TodoApiNet.Extensions
 {
-    public static class QueryObject<T> where T : class
+    public static class QueryObject
     {
         #region snippet_CreateFilterForQuery
 
-        public static FilterDefinition<T> CreateObjectQuery(string filter)
+        public static FilterDefinition<T> CreateObjectQuery<T>(string[] filter) where T : class
         {
             var builder = Builders<T>.Filter;
+            
+            if (filter.IsEmpty()) { return builder.Exists("_id", true); }
 
-            if (String.IsNullOrEmpty(filter)) { return builder.Exists("_id", true); }
-
-            var query = filter.Split('-');
+            var query = filter[0].Split('=');
             
             return builder.Eq(query[0], query[1]);
         }
@@ -23,29 +23,35 @@ namespace TodoApiNet.Extensions
 
         #region snippet_CreateObjectForSort
 
-        public static string CreateObjectQuerySort(string field)
+        public static string CreateObjectQuerySort(string field, string typeQuery = "find")
         {
             var isAscending = field.Contains('-');
             var queryField = isAscending ? field.Split('-')[1] : field;
-            var objectQuerySort = String.Format("{{ {0}: {1} }}", queryField, isAscending ? -1 : 1);
+            var order = isAscending ? -1 : 1;
+
+            if (typeQuery.ToLowerInvariant().Equals("find"))
+            {
+                return String.Format("{{ {0}: {1} }}", queryField, order);
+            }
             
-            return objectQuerySort;
+            return $"{queryField}={order}";
         }
 
         #endregion
 
         #region snippet_CreateObjectPaginate
 
-        public static Request CreateObjectPaginate(Request querys)
+        public static Request CreateObjectPaginate(Request queryParameters)
         {
-            if (querys.Paginate)
+            var ( pageSize, page, paginate ) = queryParameters;
+            if (paginate)
             {
-                querys.Page = querys.Page == 1 ? 0 : querys.Page == 0 ? 0 : querys.Page - 1;
-                return querys;
+                queryParameters.Page = page == 1 ? 0 : page == 0 ? 0 : page - 1;
+                return queryParameters;
             }
 
-            querys.PageSize = 0;
-            return querys;
+            queryParameters.PageSize = 0;
+            return queryParameters;
         }
 
         #endregion

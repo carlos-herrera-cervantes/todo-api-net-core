@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
-using MongoDB.Driver;
 using TodoApiNet.Models;
 
 namespace TodoApiNet.Repositories
@@ -10,11 +9,11 @@ namespace TodoApiNet.Repositories
     {
          Task CreateAsync(User user);
 
-         Task<IEnumerable<User>> GetAllAsync(FilterDefinition<User> filter, string sort, Request querys);
+         Task<IEnumerable<User>> GetAllAsync(Request queryParameters);
 
          Task<User> GetByIdAsync(string id);
 
-         Task<User> GetOneAsync(FilterDefinition<User> filter);
+         Task<User> GetOneAsync(Request queryParameters);
 
          Task UpdateAsync(string id, User newUser, JsonPatchDocument<User> currentUser);
 
