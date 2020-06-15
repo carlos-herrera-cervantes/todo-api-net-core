@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TodoApiNet.Constants;
 
 namespace TodoApiNet.Models
 {
@@ -34,6 +35,8 @@ namespace TodoApiNet.Models
 
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        public string Role { get; set; } = Roles.Admin;
 
         #endregion
 

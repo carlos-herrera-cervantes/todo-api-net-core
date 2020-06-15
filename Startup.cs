@@ -36,6 +36,7 @@ namespace TodoApiNet
             services.AddSingleton<IStringLocalizer, JsonStringLocalizer>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ITodoRepository, TodoRepository>();
+            services.AddTransient<IAccessTokenRepository, AccessTokenRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

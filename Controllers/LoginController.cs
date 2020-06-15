@@ -18,11 +18,16 @@ namespace TodoApiNet.Controllers
     public class LoginController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAccessTokenRepository _accessTokenRepository;
         private readonly IConfiguration _configuration;
         private readonly IStringLocalizer<SharedResources> _localizer;
 
-        public LoginController(IUserRepository userRepository, IConfiguration configuration, IStringLocalizer<SharedResources> localizer) => 
-            (_userRepository, _configuration, _localizer) = (userRepository, configuration, localizer);
+        public LoginController(
+            IUserRepository userRepository, 
+            IAccessTokenRepository accessTokenRepository, 
+            IConfiguration configuration, 
+            IStringLocalizer<SharedResources> localizer) => 
+            (_userRepository, _accessTokenRepository, _configuration, _localizer) = (userRepository, accessTokenRepository, configuration, localizer);
 
         /// <summary>
         /// POST
@@ -36,6 +41,17 @@ namespace TodoApiNet.Controllers
             var token = await GetToken(credentials);
 
             if (token is false) return NotFound(new Response<IActionResult>() { Status = false, Message = _localizer["InvalidCredentials"].Value });
+
+            var user = await GetUserByEmail(credentials.Email);
+            var accessToken = new AccessToken
+            {
+                Token = token,
+                UserId = user.Id,
+                Email = user.Email,
+                Role = user.Role
+            };
+
+            await _accessTokenRepository.CreateAsync(accessToken);
 
             return Ok(new Response<string>() { Status = true, Data = token });
         }

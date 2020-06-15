@@ -26,6 +26,7 @@ namespace TodoApiNet.Controllers
         #region snippet_GetAll
 
         [HttpGet]
+        [Role(roles: new string[] { "Admin", "Client" })]
         [PaginateValidator]
         public async Task<IActionResult> GetAllAsync([FromQuery] Request querys) =>
             Ok(new Response<IEnumerable<User>>
@@ -103,6 +104,7 @@ namespace TodoApiNet.Controllers
         #region snippet_Delete
 
         [HttpDelete("{id}")]
+        [Role(roles: new string[] { "Admin" })]
         [UserExists]
         public async Task<IActionResult> DeleteAsync(string id)
         {
