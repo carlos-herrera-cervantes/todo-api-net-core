@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using TodoApiNet.Extensions;
 using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -27,12 +28,24 @@ namespace TodoApiNet.Controllers
 
         [HttpGet]
         [PaginateValidator]
-        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys) =>
-            Ok(new Response<IEnumerable<Todo>>
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
+        {
+            var (_, _, paginate) = querys;
+            Paginate paginateResponse = null;
+            
+            if (paginate)
+            {
+                var totalDocuments = await _todoRepository.CountAsync(querys);
+                paginateResponse = QueryObject.CreateObjectResponsePaginate(querys, totalDocuments);
+            }
+            
+            return Ok(new Response<IEnumerable<Todo>>
             {
                 Status = true,
-                Data = await _todoRepository.GetAllAsync(querys)
+                Data = await _todoRepository.GetAllAsync(querys),
+                Paginate = paginateResponse
             });
+        }
 
         #endregion
 
@@ -111,7 +124,7 @@ namespace TodoApiNet.Controllers
 
         #region snippet_UpdateUser
 
-        private async Task UpdateTodosUser(User newUser, string todoId, bool addTodo)
+        async Task UpdateTodosUser(User newUser, string todoId, bool addTodo)
         {
             if (newUser is null) { return; }
             if (addTodo) { newUser.Todos.Add(todoId); } else { newUser.Todos.Remove(todoId); }

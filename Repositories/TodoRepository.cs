@@ -70,5 +70,15 @@ namespace TodoApiNet.Repositories
         public async Task DeleteAsync(string id) => await _context.DeleteOneAsync(todo => todo.Id == id);
 
         #endregion
+
+        /// <summary>
+        /// COUNT
+        /// </summary>
+
+        #region snippet_Count
+
+        public async Task<int> CountAsync(Request queryParameters) => await MongoDBFilter<Todo>.GetNumberOfDocuments(_context, queryParameters);
+
+        #endregion
     }
 }

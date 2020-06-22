@@ -1,5 +1,6 @@
 .vscode/
 .vs/
-bin/
+bin
+obj
 Migrations/
 TodoApi.sqlite

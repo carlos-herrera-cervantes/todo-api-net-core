@@ -7,7 +7,7 @@ namespace TodoApiNet.Repositories
 {
     public interface ITodoRepository
     {
-         Task<IEnumerable<Todo>> GetAllAsync(Request querys);
+         Task<IEnumerable<Todo>> GetAllAsync(Request queryParameters);
 
          Task<Todo> GetByIdAsync(string id);
 
@@ -16,5 +16,7 @@ namespace TodoApiNet.Repositories
          Task UpdateAsync(string id, Todo newTodo, JsonPatchDocument<Todo> currentTodo);
 
          Task DeleteAsync(string id);
+
+         Task<int> CountAsync(Request queryParameters);
     }
 }

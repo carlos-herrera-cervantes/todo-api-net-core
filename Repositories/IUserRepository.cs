@@ -18,5 +18,7 @@ namespace TodoApiNet.Repositories
          Task UpdateAsync(string id, User newUser, JsonPatchDocument<User> currentUser);
 
          Task DeleteAsync(string id);
+
+         Task<int> CountAsync(Request queryParameters);
     }
 }

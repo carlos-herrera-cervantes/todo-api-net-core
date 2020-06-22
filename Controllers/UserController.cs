@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using TodoApiNet.Extensions;
 using TodoApiNet.Middlewares;
 using TodoApiNet.Models;
 using TodoApiNet.Repositories;
@@ -28,12 +29,24 @@ namespace TodoApiNet.Controllers
         [HttpGet]
         [Role(roles: new string[] { "Admin", "Client" })]
         [PaginateValidator]
-        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys) =>
-            Ok(new Response<IEnumerable<User>>
+        public async Task<IActionResult> GetAllAsync([FromQuery] Request querys)
+        {
+            var (_, _, paginate) = querys;
+            Paginate paginateResponse = null;
+            
+            if (paginate)
+            {
+                var totalDocuments = await _userRepository.CountAsync(querys);
+                paginateResponse = QueryObject.CreateObjectResponsePaginate(querys, totalDocuments);
+            }
+            
+            return Ok(new Response<IEnumerable<User>>
             {
                 Status = true,
-                Data = await _userRepository.GetAllAsync(querys)
+                Data = await _userRepository.GetAllAsync(querys),
+                Paginate = paginateResponse
             });
+        }
 
         #endregion
 
@@ -52,12 +65,21 @@ namespace TodoApiNet.Controllers
         [PaginateValidator]
         public async Task<IActionResult> GetTodosByUserId(string id, [FromQuery] Request querys)
         {
+            var (_, _, paginate) = querys;
+            Paginate paginateResponse = null;
             querys.Filters = new string[] { $"UserId={id}" };
+            
+            if (paginate)
+            {
+                var totalDocuments = await _todoRepository.CountAsync(querys);
+                paginateResponse = QueryObject.CreateObjectResponsePaginate(querys, totalDocuments);
+            }
 
             return Ok(new Response<IEnumerable<Todo>>
             {
                 Status = true,
-                Data = await _todoRepository.GetAllAsync(querys)
+                Data = await _todoRepository.GetAllAsync(querys),
+                Paginate = paginateResponse
             });
         }
 

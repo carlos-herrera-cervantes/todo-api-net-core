@@ -55,5 +55,26 @@ namespace TodoApiNet.Extensions
         }
 
         #endregion
+
+        #region snippet_CreateObjectResponsePaginate
+
+        public static Paginate CreateObjectResponsePaginate(Request queryParameters, int totalDocuments)
+        {
+            var ( pageSize, page, _ ) = queryParameters;
+            var pageResponse = page.IsNotEqual(0) ? page : 1;
+            var take = pageResponse * pageSize;
+            var reduceDocuments = totalDocuments - take;
+            var remainingDocuments = reduceDocuments < 0 ? 0 : reduceDocuments;
+
+            return new Paginate
+            {
+                Page = pageResponse,
+                PageSize = pageSize,
+                RemainingDocuments = remainingDocuments,
+                TotalDocuments = totalDocuments
+            };
+        }
+
+        #endregion
     }
 }

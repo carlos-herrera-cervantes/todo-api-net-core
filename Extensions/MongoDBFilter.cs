@@ -28,7 +28,7 @@ namespace TodoApiNet.Extensions
 
         #region snippet_GetDocumentWithRelationships
 
-        public static async Task<T> GetDocumentWithRelationships(IMongoCollection<T> collection, Request queryParameters, List<Relation> relations)
+        static async Task<T> GetDocumentWithRelationships(IMongoCollection<T> collection, Request queryParameters, List<Relation> relations)
         {
             var ( _, _, _, entities, filters ) = queryParameters;
             var textInfo = CultureInfo.CurrentCulture.TextInfo;
@@ -70,7 +70,7 @@ namespace TodoApiNet.Extensions
 
         #region snippet_GetDocumentsWithRelationships
 
-        private static async Task<IEnumerable<T>> GetDocumentsWithRelationships(IMongoCollection<T> collection, Request queryParameters, List<Relation> relations)
+        static async Task<IEnumerable<T>> GetDocumentsWithRelationships(IMongoCollection<T> collection, Request queryParameters, List<Relation> relations)
         {
             var ( sort, _, _, entities, filters ) = queryParameters;
             var ( _, pageSize, page, _, _ ) = QueryObject.CreateObjectPaginate(queryParameters);
@@ -93,6 +93,18 @@ namespace TodoApiNet.Extensions
             query = itHasSort is null ? query : query.Sort(itHasSort.ToBsonDocument());
             
             return await query.As<T>().ToListAsync();
+        }
+
+        #endregion
+
+        #region snippet_CountDocuments
+
+        public static async Task<int> GetNumberOfDocuments(IMongoCollection<T>  collection, Request queryParameters)
+        {
+            var ( entities, filters ) = queryParameters;
+            var filter = QueryObject.CreateObjectQuery<T>(filters);
+            var totalDocuments = await collection.CountDocumentsAsync(filter);
+            return (int)totalDocuments;
         }
 
         #endregion
